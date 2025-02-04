@@ -2,6 +2,7 @@ import { ArrowRight, Check, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import RAGInterface from "@/components/RAGInterface";
 
 const Index = () => {
   const [activeAccordion, setActiveAccordion] = useState<number | null>(null);
@@ -10,29 +11,21 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       
-      {/* Main content with top padding for navigation */}
       <main className="pt-16">
         {/* Hero Section */}
         <section className="relative overflow-hidden px-6 lg:px-8 py-24 sm:py-32">
           <div className="mx-auto max-w-7xl text-center">
             <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-primary mb-6">
-              Change the bank account
+              Understand your documents
               <br />
               <span className="bg-gradient-to-r from-[#9EE755] to-[#CFDD3C] bg-clip-text text-transparent">
-                you use
+                with AI
               </span>
             </h1>
             <p className="mx-auto max-w-2xl text-lg text-secondary mb-8">
-              Experience banking reimagined. Simple, secure, and designed for the modern world.
+              Upload your PDFs and get instant answers to your questions using advanced AI technology.
             </p>
-            <div className="flex justify-center gap-4">
-              <button className="px-6 py-3 bg-primary text-white rounded-full hover:bg-primary/90 transition-colors">
-                Get Started
-              </button>
-              <button className="px-6 py-3 glass rounded-full hover:bg-white/20 transition-colors flex items-center gap-2">
-                Learn More <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
+            <RAGInterface />
           </div>
 
           {/* Hero Image */}
