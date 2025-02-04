@@ -47,7 +47,6 @@ const RAGInterface = () => {
     e.preventDefault();
     if (!query.trim()) return;
 
-    // Here you would typically send the query to your backend
     console.log("Query submitted:", query);
     toast({
       title: "Query submitted",
@@ -74,9 +73,9 @@ const RAGInterface = () => {
             </>
           ) : (
             <>
-              <Upload className="h-12 w-12 text-accent animate-float" />
+              <Upload className="h-12 w-12 text-accent animate-bounce" />
               <div className="space-y-2">
-                <h3 className="text-lg font-semibold bg-gradient-to-r from-[#9EE755] to-[#CFDD3C] bg-clip-text text-transparent animate-float">
+                <h3 className="text-lg font-semibold bg-gradient-to-r from-[#9EE755] to-[#CFDD3C] bg-clip-text text-transparent">
                   Drop your PDF here
                 </h3>
                 <p className="text-secondary">
