@@ -1,3 +1,4 @@
+
 import { useState, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { Loader2, Upload, Search } from "lucide-react";
@@ -55,7 +56,7 @@ const RAGInterface = () => {
   };
 
   return (
-    <div className="w-full max-w-3xl mx-auto space-y-8">
+    <div className="w-full max-w-3xl mx-auto space-y-8 mt-12">
       <div
         {...getRootProps()}
         className={cn(
