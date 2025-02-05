@@ -1,8 +1,9 @@
+
 from fastapi import FastAPI, File, UploadFile, HTTPException
 from PyPDF2 import PdfReader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 import os
-from langchain_community.embeddings import OllamaEmbeddings
+from nomic.embed import EmbedText
 from langchain.vectorstores import FAISS
 from langchain_groq import ChatGroq
 from langchain.chains.question_answering import load_qa_chain
@@ -16,6 +17,12 @@ app = FastAPI(title="RAG API Service", version="0.1.0")
 # Load environment variables
 load_dotenv()
 groq_api_key = os.getenv("GROQ_API_KEY")
+
+# Initialize embeddings
+embed_model = EmbedText(
+    model_name="nomic-embed-text-v1.5",
+    embedding_dim=768
+)
 
 # Global vector store instance
 vector_store = None
@@ -38,8 +45,8 @@ def get_text_chunks(text: str):
 def create_vector_store(text_chunks: List[str]):
     """Creates and stores a FAISS vector store from text chunks"""
     global vector_store
-    embeddings = OllamaEmbeddings(model="llama2")
-    vector_store = FAISS.from_texts(text_chunks, embedding=embeddings)
+    embeddings = [embed_model.embed(chunk) for chunk in text_chunks]
+    vector_store = FAISS.from_texts(text_chunks, embeddings)
     return vector_store
 
 def get_conversational_chain():
